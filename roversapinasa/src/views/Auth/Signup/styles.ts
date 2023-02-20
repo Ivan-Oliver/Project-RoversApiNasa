@@ -56,10 +56,21 @@ export const FormButton = styled.button`
    &:hover{
        background-color: ${({ theme }) => theme.colors.black};
        color: white;
-       font-size: 16px;
        font-weight: bold;
-    
+       padding: 20px;
+       text-align: center;
+       width: 340px;
+       -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    &:active{
+      background-color: ${({ theme }) => theme.colors.black};
+  box-shadow: 0 6px #666;
+  transform: translateY(4px);
     }
+    
+    } 
 `
 
 export const FormMessage = styled.p`
@@ -84,9 +95,20 @@ export const BackButton = styled.button`
  &:hover{
        background-color: ${({ theme }) => theme.colors.black};
        color: white;
-       font-size: 16px;
        font-weight: bold;
-    
+       padding: 6px;
+       text-align: center;
+       width: 100px;
+       -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    &:active{
+      background-color: ${({ theme }) => theme.colors.black};
+  box-shadow: 0 6px #666;
+  transform: translateY(4px);
     }
+    
+    }  
 `
 

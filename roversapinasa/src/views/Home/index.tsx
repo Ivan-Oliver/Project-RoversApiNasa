@@ -13,7 +13,7 @@ const Home: FC = () => {
   }, [])
 
   useEffect(() => {
-    console.log('eentramos')
+    console.log('entramos')
     getMarsList();
   }, [getMarsList]);
 

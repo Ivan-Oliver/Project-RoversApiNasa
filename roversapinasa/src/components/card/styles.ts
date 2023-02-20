@@ -14,15 +14,17 @@ export const App = styled.div`
 
 export const Description = styled.p`
     font-size: 20px;
+    
     font-weight: bold;
     font-style: italic;
     font-family: sans-serif;
     margin-bottom: 10px;
+    margin-right: 100px
 `
 
 export const Image = styled.img`
-    width: 220px;
-    height: 250px;
+    width: 245px;
+    height: 300px;
     
 `
 
@@ -37,14 +39,4 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.colors.grey100};
 `
 
-export const ButtonDetails = styled.button`
-cursor: pointer;
-border: none;
-border-radius: 10px;
-font-size:20px;  
-padding: 10px;
-margin: 15px;
-background-color: ${({ theme }) => theme.colors.grey700};
-color: ${({ theme }) => theme.colors.black};
 
-`

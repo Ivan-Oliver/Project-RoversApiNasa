@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Container, Description, Image, ButtonDetails } from './styles'
+import { Container, Description, Image } from './styles'
 import { Props } from './types'
 
 const Card: FC<Props> = ({
@@ -10,12 +10,7 @@ const Card: FC<Props> = ({
     onClick,
     id
 }) => {
-    const navigate = useNavigate()
-    const handleClick = () => {
-        if (onClick && id) {
-            onClick(id)
-        }
-    }
+    
 
    
     return (
@@ -24,7 +19,6 @@ const Card: FC<Props> = ({
             <Description>Id: {nasaId}</Description>
             <Description>Sol: {sol}</Description>
             <Image src={image} />
-            <ButtonDetails onClick={handleClick}>View details</ButtonDetails>
         </Container>
         </>
     )

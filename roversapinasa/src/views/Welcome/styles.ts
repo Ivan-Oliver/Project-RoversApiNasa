@@ -15,9 +15,13 @@ position: absolute;
 top: 0px;
 left: 90vh;
 font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-font-size: 40px;
+font-size: 30px;
 font-weight:bold;
 color:white;
+&:hover{
+  color: ${({ theme }) => theme.colors.black};
+ text-transform: uppercase; 
+}
  `
 
 export const ContainerRight = styled.div`
@@ -34,7 +38,8 @@ font-family: Arial, Helvetica, sans-serif;
 font-weight:lighter;
 margin-left: 10px;
 position: relative;
-top: 0px;`
+top: 0px;
+`
 
 export const TextContainer = styled.p`
 margin-top: 50px;
@@ -42,6 +47,7 @@ margin-left: 10px;
 color:white;
 font-weight:lighter;
 font-size: 20px;
+
 `
 
 export const ContainerLeft = styled.div`
@@ -72,7 +78,7 @@ export const WelcomeSignup = styled(Link)`
  position: relative;
  background-color:${({ theme }) => theme.colors.white100};
     border: none;
-    font-size: 28px;
+    font-size: 16px;
     color:${({ theme }) => theme.colors.black};
     margin: 20px;
     padding: 5px;
@@ -104,7 +110,7 @@ export const WelcomeLogin = styled(Link)`
  background-color:${({ theme }) => theme.colors.white100};
     border: none;
     padding: 5px;
-    font-size: 28px;
+    font-size: 16px;
     color:${({ theme }) => theme.colors.black};
     margin: 20px;
     text-align: center;
