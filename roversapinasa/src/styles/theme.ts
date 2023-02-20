@@ -1,7 +1,7 @@
 const theme = {
     colors: {
       accent: '#0074CA',
-      danger: '#E53935',
+      red: '#E53935',
       dangerPale: '#ffecec',
       orange: '#FB762E',
       orangePale: '#fff4ec',

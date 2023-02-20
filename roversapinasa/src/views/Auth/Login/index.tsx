@@ -1,58 +1,37 @@
-import { FC, memo, useCallback } from 'react'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-// import { signInWithEmailAndPassword } from 'firebase/auth'
-// import { auth } from '../../../services/fireabase'
+import { FC, memo, useCallback } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Form,
   FormButton,
   FormContainer,
   Input,
-  Label,
+  BackButton,
   Error,
   InputContainer,
-} from './styles'
-import { Formik, Field } from 'formik'
-import { initialValues, validationSchema } from './constants'
-// import { BackButton } from '../../../components/Navbar/styles'
-import { setToken } from '../../../services/storage'
+} from "./styles";
+import { Formik, Field } from "formik";
+import { initialValues, validationSchema } from "./constants";
+import { setToken } from "../../../services/storage";
+import { login } from "../../../services/Api/auth";
 
 const LoginForm: FC = () => {
-  const navigate = useNavigate()
-//   const [email, setEmail] = useState('')
-//   const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (values: typeof initialValues) => {
-    try {
-      const response = await fetch('http://localhost:8000/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: values.email, password: values.password })
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        setToken(data.token); // Almacena el token en el almacenamiento local
-        navigate('/home ');
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error);
-      }
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-      setError('There was a problem with the fetch operation');
+    const loginError = await login(values);
+
+    if (!loginError) {
+      navigate("/home");
+    } else {
+      setError(loginError);
     }
   };
 
   const goToBack = useCallback(() => {
- 
-    navigate('/')
-  }, [navigate])
-
+    navigate("/");
+  }, [navigate]);
   return (
     <FormContainer>
       <Formik
@@ -64,8 +43,8 @@ const LoginForm: FC = () => {
           <Field name="email">
             {({ field, meta }: { field: any; meta: any }) => (
               <InputContainer>
-                <Label>Email</Label>
-                <Input $hasError={!!meta?.error} type="text" {...field} />
+                <Input $hasError={!!meta?.error} type="text" placeholder="Write your email on..."
+                  {...field} />
                 {meta?.error && <Error>{meta.error}</Error>}
               </InputContainer>
             )}
@@ -73,20 +52,19 @@ const LoginForm: FC = () => {
           <Field name="password">
             {({ field, meta }: { field: any; meta: any }) => (
               <InputContainer>
-                <Label>Password</Label>
-                <Input $hasError={!!meta?.error} {...field} type="password" />
+                <Input $hasError={!!meta?.error}
+                  placeholder="Write your password on..."
+                  {...field} type="password" />
                 {meta?.error && <Error>{meta.error}</Error>}
               </InputContainer>
             )}
           </Field>
           <FormButton type="submit">Login</FormButton>
-          {/* <BackButton onClick={goToBack}>🔙</BackButton> */}
+          {<BackButton onClick={goToBack}>Back</BackButton>}
         </Form>
       </Formik>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default memo(LoginForm)
-
-
+export default memo(LoginForm);

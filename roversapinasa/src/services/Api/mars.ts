@@ -1,17 +1,18 @@
-import { getToken } from "./storage";
+import { getToken } from "../storage";
 
 export type Mars = {
-  id: number;
+  id: string;
   nasaId: number;
   sol: number;
-  image: string;
+  image: string;    
 };
 
+const BASE_API_URL = "http://localhost:8000/mars";
 
 export const getMars = async () => {
   try {
     const token = getToken();
-    const response = await fetch("http://localhost:8000/mars", {
+    const response = await fetch(BASE_API_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -41,7 +42,7 @@ export const syncMars = async () => {
 export const removeMars = async (id: number) => {
   try {
     const token = getToken();
-    await fetch(`http://localhost:8000/mars/${id}`, {
+    await fetch(`${BASE_API_URL}/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -53,7 +54,7 @@ export const removeMars = async (id: number) => {
 export const createMars = async (data: Omit<Mars, "id">) => {
   try {
     const token = getToken();
-    await fetch("http://localhost:8000/mars", {
+    await fetch(BASE_API_URL, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data),
@@ -66,7 +67,7 @@ export const createMars = async (data: Omit<Mars, "id">) => {
 export const updateMars = async (id: number, data: Partial<Mars>) => {
   try {
     const token = getToken();
-    await fetch(`http://localhost:8000/mars"/${id}`, {
+    await fetch(`${BASE_API_URL}/${id}`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${token}` },
       body: JSON.stringify(data),
